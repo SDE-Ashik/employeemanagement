@@ -24,6 +24,11 @@ class IndexView(View):
 class LoginView(View):
     def get(self, request):
         return render(request, "login.html")
+    def post(self,request):
+        print(request.POST.get("u_name"))
+        print(request.POST.get("pwd"))
+        print("successful")
+        return render(request,"login.html")
 
 class RegistrationView(View):
     def get(self, request):
@@ -32,4 +37,6 @@ class RegistrationView(View):
         print(request.POST.get("f_name"))
         print(request.POST.get("l_name"))
         print(request.POST.get("e_mail"))
-        return render(request,"registration.html")
+        print(request.POST.get("u_name"))
+        print(request.POST.get("pwd"))
+        return render(request, "registration.html")
