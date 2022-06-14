@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRATION </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <style>
+        .head{
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bolder;
+            font-style: italic;
+            padding-top: 10px;
+        }
+        .container{
+            margin-left: auto;
+            margin-right: auto;
+            width:800px;
+            height:800px;
+            border: white 2px solid;
+            background-color: wheat;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container ">
+        <h1 class="head">registration form</h1>
+        <hr>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+        <form action="" method="POST">
+            {%csrf_token%}
+
+            <div class="mb-3">
+
+                <input type="text" name="f_name"  class="form-control" id="exampleInputfirstname" placeholder="FIIRST NAME" aria-describedby="emailHelp">
+
+              </div>
+              <div class="mb-3">
+
+                <input type="text" class="form-control" id="examplelastname" placeholder="lastname" name="l_name" >
+
+              </div>
+            <div class="mb-3">
+
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="EMAIL ADDRESS" name="e_mail">
+
+              </div>
+                <div class="mb-3">
+
+                <input type="text" class="form-control" id="exampleusername" placeholder="USERNAME" name="u_name">
+              </div>
+              <div class="mb-3">
+
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="PASSWORD" name="pwd" >
+              </div>
+
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+    </div>
+    </div></div>
+
+</body>
+</html>
