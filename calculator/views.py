@@ -106,20 +106,21 @@ class CountView(View):
 
         return render(request, "wordcount.html", {"word": wc})
 
-class PrimeView(View):
-    def get(self,request):
-        return render(request,"prime.html")
-    def post(self,request):
 
-        init =int( request.POST.get("init"))
+class PrimeView(View):
+    def get(self, request):
+        return render(request, "prime.html")
+
+    def post(self, request):
+        init = int(request.POST.get("init"))
         final = int(request.POST.get("final"))
-        for prime in range(init, final):
-            for j in range(2, prime):
-                if prime % j == 0:
+        prime = []
+        for i in range(init, final+1):
+            for j in range(2, i):
+                if i % j == 0:
                     break
             else:
-                print(prime)
-        values = [prime]
-        prime_num = dict(zip(key, values))
-        print(prime_num)
-        return render(request, "prime.html", {"primeres": prime_num})
+                prime.append(i)
+
+        print(prime)
+        return render(request, "prime.html", {"primeres": prime})

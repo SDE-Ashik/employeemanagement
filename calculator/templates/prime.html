@@ -31,10 +31,11 @@
         <div class="col-4"></div>
         <div class="col-4">
             <div class="border border-success">
+                RESULT=
                 {%if primeres%}
-                {%for key,values in primeres%}
-                <span>{{key}}</span>
-                <span>{{values}}</span>
+                {%for i in primeres%}
+
+              <span> {{i}}</span>
                 {%endfor%}
                 {%endif%}
 
