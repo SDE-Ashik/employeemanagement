@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View
+from calculator.forms import OperationForm
 
 
 # Create your views here.
@@ -11,7 +12,8 @@ class HomeView(View):
 
 class AddView(View):
     def get(self, request):
-        return render(request, "add.html")
+        form = OperationForm()
+        return render(request, "add.html", {"form": form})
 
     def post(self, request):
         n1 = int(request.POST.get("num1"))
@@ -23,7 +25,8 @@ class AddView(View):
 
 class SubView(View):
     def get(self, request):
-        return render(request, "sub.html")
+        form = OperationForm()
+        return render(request, "sub.html",{"form":form})
 
     def post(self, request):
         n1 = request.POST.get("num1")
@@ -34,7 +37,8 @@ class SubView(View):
 
 class MulView(View):
     def get(self, request):
-        return render(request, "mul.html")
+        form = OperationForm()
+        return render(request, "mul.html",{"form":form})
 
     def post(self, request):
         n1 = int(request.POST.get("num1"))
@@ -45,7 +49,8 @@ class MulView(View):
 
 class DivView(View):
     def get(self, request):
-        return render(request, "div.html")
+        form = OperationForm()
+        return render(request, "div.html", {"form":form})
 
     def post(self, request):
         n1 = int(request.POST.get("num1"))
@@ -115,7 +120,7 @@ class PrimeView(View):
         init = int(request.POST.get("init"))
         final = int(request.POST.get("final"))
         prime = []
-        for i in range(init, final+1):
+        for i in range(init, final + 1):
             for j in range(2, i):
                 if i % j == 0:
                     break

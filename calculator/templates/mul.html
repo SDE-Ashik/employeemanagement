@@ -14,10 +14,11 @@
         <div class="col-4">
             <form action="" method="POST">
                 {%csrf_token%}
-                <div class="mb-3">
-                    <input type="number" name="num1" placeholder="ENTER NUMBER 1" class="form-control">
-                    <input type="number" name="num2" placeholder="ENTER NUMBER 2" class="form-control" >
-                </div>
+                {{form}}
+<!--                <div class="mb-3">-->
+<!--                    <input type="number" name="num1" placeholder="ENTER NUMBER 1" class="form-control">-->
+<!--                    <input type="number" name="num2" placeholder="ENTER NUMBER 2" class="form-control" >-->
+<!--                </div>-->
                 <div class="mb-3">
                     <input type="submit"  class="">
                 </div>

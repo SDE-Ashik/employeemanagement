@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import View
+from employee.forms import RegistrationForm,LoginForm
 
 
 # Create your views here.
@@ -21,7 +22,8 @@ class IndexView(View):
 
 class LoginView(View):
     def get(self, request):
-        return render(request, "login.html")
+        form = LoginForm()
+        return render(request, "login.html",{"form": form})
 
     def post(self, request):
         print(request.POST.get("u_name"))
@@ -32,7 +34,8 @@ class LoginView(View):
 
 class RegistrationView(View):
     def get(self, request):
-        return render(request, "registration.html")
+        form = RegistrationForm()
+        return render(request, "registration.html", {"form":form})
 
     def post(self, request):
         print(request.POST.get("f_name"))
