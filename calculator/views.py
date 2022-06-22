@@ -10,53 +10,81 @@ class HomeView(View):
         return render(request, "cal_home.html")
 
 
-class AddView(View):
+class AdddView(View):
     def get(self, request):
         form = OperationForm()
         return render(request, "add.html", {"form": form})
 
     def post(self, request):
-        n1 = int(request.POST.get("num1"))
-        n2 = int(request.POST.get("num2"))
-        result = n1 + n2
-        print(result)
-        return render(request, "add.html", {"res": result})
+        # n1 = int(request.POST.get("num1"))
+        # n2 = int(request.POST.get("num2"))
+        # result = n1 + n2
+        # print(result)
+
+        form = OperationForm(request.POST)
+        if form.is_valid():
+            n1 = form.cleaned_data.get("num1")
+            n2 = form.cleaned_data.get("num2")
+            result = n1 + n2
+            print(form.cleaned_data)
+
+            return render(request, "add.html", {"res": result, "form": form}, )
+        else:
+            return render(request, "add.html", {"form": form})
 
 
 class SubView(View):
     def get(self, request):
         form = OperationForm()
-        return render(request, "sub.html",{"form":form})
+        return render(request, "sub.html", {"form": form})
 
     def post(self, request):
-        n1 = request.POST.get("num1")
-        n2 = request.POST.get("num2")
-        result = int(n1) - int(n2)
+        # n1 = request.POST.get("num1")
+        # n2 = request.POST.get("num2")
+        # result = int(n1) - int(n2)
+        form = OperationForm(request.POST)
+        if not form.is_valid():
+            return render(request, "sub.html", {"form": form})
+        n1 = form.cleaned_data.get("num1")
+        n2 = form.cleaned_data.get("num2")
+        result = n1 - n2
         return render(request, "sub.html", {"subres": result})
 
 
 class MulView(View):
     def get(self, request):
         form = OperationForm()
-        return render(request, "mul.html",{"form":form})
+        return render(request, "mul.html", {"form": form})
 
-    def post(self, request):
-        n1 = int(request.POST.get("num1"))
-        n2 = int(request.POST.get("num2"))
-        result = n1 * n2
-        return render(request, "mul.html", {"mulres": result})
+    def post(self, request, result=None):
+        # n1 = int(request.POST.get("num1"))
+        # n2 = int(request.POST.get("num2"))
+        # result = n1 * n2
+        form = OperationForm(request.POST)
+        if not form.is_valid():
+            return render(request,"mul.html",{"form":form})
+        n1 = form.cleaned_data.get("num1")
+        n2 = form.cleaned_data.get("num2")
+        mul = n1 * n2
+
+        return render(request, "mul.html", {"mulres": mul})
 
 
 class DivView(View):
     def get(self, request):
         form = OperationForm()
-        return render(request, "div.html", {"form":form})
+        return render(request, "div.html", {"form": form})
 
     def post(self, request):
-        n1 = int(request.POST.get("num1"))
-        n2 = int(request.POST.get("num2"))
+        form = OperationForm(request.POST)
+        if not form.is_valid():
+            return render(request, "div.html", {"form": form})
+        n1 = form.cleaned_data.get("num1")
+        n2 = form.cleaned_data.get("num2")
+        # n1 = int(request.POST.get("num1"))
+        # n2 = int(request.POST.get("num2"))
         result = n1 / n2
-        return render(request, "div.html", {"divres": result})
+        return render(request, "div.html", {"divres": result, "form": form})
 
 
 class CubeView(View):

@@ -3,7 +3,7 @@ from calculator import views
 
 urlpatterns = [
     path("home", views.HomeView.as_view(),name ="cal-home"),
-    path("add", views.AddView.as_view() , name = "cal-add"),
+    path("add", views.AdddView.as_view() , name = "cal-add"),
     path("sub", views.SubView.as_view(), name ="cal-sub"),
     path("mul", views.MulView.as_view(),name ="cal-mul"),
     path("div", views.DivView.as_view(), name ="cal-div"),

@@ -9,3 +9,19 @@ class RegistrationForm(forms.Form):
 class LoginForm(forms.Form):
     u_name = forms.CharField(label="enter your user name")
     pwd = forms.CharField(label="enter your password")
+
+
+class EmployeeForm(forms.Form):
+    eid = forms.CharField()
+    employee_name = forms.CharField()
+    designation = forms.CharField()
+    salary = forms.IntegerField()
+    email = forms.EmailField()
+    experience = forms.IntegerField()
+
+    def clean(self):
+        cleaned_data = super().clean()
+        exp = cleaned_data.get("experience")
+        if exp < 0:
+            msg = "INVALID EXPERIENCE"
+            self.add_error("experience", msg)

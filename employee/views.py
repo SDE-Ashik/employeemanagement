@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import View
-from employee.forms import RegistrationForm,LoginForm
+from employee.forms import RegistrationForm, LoginForm, EmployeeForm
 
 
 # Create your views here.
@@ -23,7 +23,7 @@ class IndexView(View):
 class LoginView(View):
     def get(self, request):
         form = LoginForm()
-        return render(request, "login.html",{"form": form})
+        return render(request, "login.html", {"form": form})
 
     def post(self, request):
         print(request.POST.get("u_name"))
@@ -35,7 +35,7 @@ class LoginView(View):
 class RegistrationView(View):
     def get(self, request):
         form = RegistrationForm()
-        return render(request, "registration.html", {"form":form})
+        return render(request, "registration.html", {"form": form})
 
     def post(self, request):
         print(request.POST.get("f_name"))
@@ -44,3 +44,27 @@ class RegistrationView(View):
         print(request.POST.get("u_name"))
         print(request.POST.get("pwd"))
         return render(request, "registration.html")
+
+
+class EmployeeCreateView(View):
+    form_class = EmployeeForm
+    template_name = "emp-add.html"
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {"form": form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        print(request.POST)
+        if form.is_valid():
+            print("cleaned_data")
+            print(form.cleaned_data.get("eid"))
+            print(form.cleaned_data.get("employee_name"))
+            print(form.cleaned_data.get("designation"))
+            print(form.cleaned_data.get("salary"))
+            print(form.cleaned_data.get("experience"))
+            print(form.cleaned_data.get("email"))
+            return render(request, self.template_name, {"form": form})
+        else:
+            return render(request, self.template_name, {"form": form})
