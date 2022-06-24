@@ -29,6 +29,6 @@ class EmployeeForm(forms.Form):
         if exp < 0:
             msg = "INVALID EXPERIENCE"
             self.add_error("experience", msg)
-        if  sal< 0:
+        if sal < 0:
             msg = "SALARY ALWAYS POSTIVE "
             self.add_error("salary", msg)

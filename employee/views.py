@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.views.generic import View
 from employee.forms import RegistrationForm, LoginForm, EmployeeForm
+from django.contrib import messages
 
 
 # Create your views here.
@@ -43,7 +44,7 @@ class RegistrationView(View):
         print(request.POST.get("e_mail"))
         print(request.POST.get("u_name"))
         print(request.POST.get("pwd"))
-        return render(request, "registration.html")
+        return redirect("login")
 
 
 class EmployeeCreateView(View):
@@ -65,6 +66,8 @@ class EmployeeCreateView(View):
             print(form.cleaned_data.get("salary"))
             print(form.cleaned_data.get("experience"))
             print(form.cleaned_data.get("email"))
-            return render(request, self.template_name, {"form": form})
+            messages.success(request, "profile has been created")
+            return redirect("emp-add")
         else:
+            messages.error(request, "profile adding failed")
             return render(request, self.template_name, {"form": form})

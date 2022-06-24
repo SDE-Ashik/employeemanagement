@@ -30,9 +30,20 @@
 </head>
 <body>
     <div class="container ">
+     <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            {%if messages%}
+            {%for msg in messages%}
+            {{msg}}
+            {%endfor%}
+            {%endif%}
+        </div>
+        <div class="col-4"></div>
+    </div>
         <h1 class="head">registration form</h1>
         <hr>
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-4"></div>
             <div class="col-4">
         <form action="" method="POST">
